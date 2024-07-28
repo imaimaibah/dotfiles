@@ -1,6 +1,6 @@
 [submodule "nvim.lazyvim"]
 	path = nvim.lazyvim
-	url = https://github.com/imaimaibah/lazyvim-starter.git
+	url = git@github.com:imaimaibah/lazyvim-starter.git
 [submodule "nvim.astronvim"]
 	path = nvim.astronvim
-	url = https://github.com/imaimaibah/astronvm-template.git
+	url = git@github.com:imaimaibah/astronvm-template.git
