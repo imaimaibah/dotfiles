@@ -1,0 +1,6 @@
+[submodule "nvim.lazyvim"]
+	path = nvim.lazyvim
+	url = https://github.com/LazyVim/starter
+[submodule "nvim.astronvim"]
+	path = nvim.astronvim
+	url = https://github.com/AstroNvim/template
