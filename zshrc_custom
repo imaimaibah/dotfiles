@@ -78,7 +78,7 @@ sv(){
   case $vim in
     lazy*)
       echo "Switch to lazyvim"
-      mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim}
+      mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim} ~/.cache/nvim.{astronvim,lazyvim}
       rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
       ln -sf ~/.config/dotfiles/nvim.lazyvim ~/.config/nvim
       ln -sf ~/.local/share/nvim.lazyvim ~/.local/share/nvim
@@ -87,7 +87,7 @@ sv(){
       ;;
     astro*)
       echo "Switch to AstroNvim"
-      mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim}
+      mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim} ~/.cache/nvim.{astronvim,lazyvim}
       rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
       ln -sf ~/.config/dotfiles/nvim.astronvim ~/.config/nvim
       ln -sf ~/.local/share/nvim.astronvim ~/.local/share/nvim
