@@ -1,4 +1,4 @@
-alias vi=lvim
+alias vi=nvim
 alias lg=lazygit
 alias gf="git flow"
 bindkey "^R" history-incremental-search-backward
@@ -19,12 +19,13 @@ purple="#B388FF"
 blue="#06BCE4"
 cyan="#2CF9ED"
 
-export FZF_DEFAULT_OPTS="--layout=default --tmux center,60%,50% --color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
+export FZF_DEFAULT_OPTS="--layout=default --tmux center,80%,60% --color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
 
 # -- Use fd instead of fzf --
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#export FZF_CTRL_T_COMMAND="rg --color=always --line-number --no-heading --smart-case \"\${*:-}\""
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
@@ -42,6 +43,7 @@ _fzf_compgen_dir() {
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+#export FZF_CTRL_T_OPTS="--ansi --delimiter : --preview 'bat --color=always {1} --highlight-line {2}' --bind 'enter:become(echo {1})'"
 export FZF_CTRL_R_OPTS=""
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
@@ -71,24 +73,26 @@ alias ls="eza -l --git"
 export EZA_ICONS_AUTO=always
 
 # ---- vim switch ----
-switchvim(){
+sv(){
   vim=$1
   case $vim in
     lazy*)
       echo "Switch to lazyvim"
-      rm ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
-      ln -sf ~/.config/nvim.lazyvim ~/.config/nvim
+      mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim}
+      rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
+      ln -sf ~/.config/dotfiles/nvim.lazyvim ~/.config/nvim
       ln -sf ~/.local/share/nvim.lazyvim ~/.local/share/nvim
       ln -sf ~/.local/state/nvim.lazyvim ~/.local/state/nvim
       ln -sf ~/.cache/nvim.lazyvim ~/.cache/nvim
       ;;
     astro*)
       echo "Switch to AstroNvim"
-      rm ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
-      ln -sF ~/.config/nvim.astronvim ~/.config/nvim
-      ln -sF ~/.local/share/nvim.astronvim ~/.local/share/nvim
-      ln -sF ~/.local/state/nvim.astronvim ~/.local/state/nvim
-      ln -sF ~/.cache/nvim.astronvim ~/.cache/nvim
+      mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim}
+      rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
+      ln -sf ~/.config/dotfiles/nvim.astronvim ~/.config/nvim
+      ln -sf ~/.local/share/nvim.astronvim ~/.local/share/nvim
+      ln -sf ~/.local/state/nvim.astronvim ~/.local/state/nvim
+      ln -sf ~/.cache/nvim.astronvim ~/.cache/nvim
       ;;
     *) 
       echo "Current nvim: $(ls -ld ~/.config/nvim|awk -F. '{print $NF}')"
@@ -96,3 +100,12 @@ switchvim(){
   esac
 }
 
+rfv(){
+  rg --color=always --line-number --no-heading --smart-case "${*:-}" 2>/dev/null|
+    fzf --ansi \
+    --delimiter : \
+    --preview 'bat --color=always {1} --highlight-line {2}' \
+    --bind 'enter:become(nvim {1} +{2})'
+}
+zle -N rfv
+bindkey '^F' rfv

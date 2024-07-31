@@ -71,4 +71,3 @@ if ! grep -E "source.*\.zshrc_custom" ~/.zshrc;then
   echo "source ~/.zshrc_custom" >> ~/.zshrc
   . ~/.zshrc
 fi
-
