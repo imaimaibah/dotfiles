@@ -10,7 +10,7 @@ brew instal kubectl tmux git-flow-avh bat eza git-delta go nodejs glow lazygit f
   colima helm helmfile terraform chezmoi fx go-task
 
 # install stuff via cask
-brew install --cask iterm2 slack
+brew install --cask iterm2 slack wezterm
 
 # install nerd fonts
 brew tap homebrew/cask-fonts

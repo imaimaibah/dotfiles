@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 BASEPATH=${0%%$(basename $0)}
-if [[ "x${BASEPATH}" == x"" ]]; then
+if [[ "x${BASEPATH}" == x"" ]];then
   BASEPATH=./
 fi
 
@@ -35,8 +35,8 @@ curl -Lsqf $URL | tar zx -C $LOCALBIN/ && chmod +x $LOCALBIN/gitmux || echo "Dow
   curl -O https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/tokyonight_moon.tmTheme
   curl -O https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/tokyonight_storm.tmTheme
   bat cache --build
-  if ! grep -- "--theme="; then
-    echo '--theme="tokyonight_night"' >>"$(bat --config-dir)/config"
+  if ! grep -- "--theme=";then
+    echo '--theme="tokyonight_night"' >> "$(bat --config-dir)/config"
   fi
 )
 

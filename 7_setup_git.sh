@@ -24,3 +24,6 @@ git config --global color.branch auto
 git config --global color.diff auto
 git config --global color.interactive auto
 git config --global color.status auto
+git config --global delta.navigate true
+git config --global delta.side-by-side true
+git config --global delta.diff-so-fancy true
