@@ -37,9 +37,9 @@ bind-key -n F6 select-window -t :6
 bind C-n set-window-option synchronize-panes
 
 # Gitbar
-#tmux_conf_theme_status_left_bg='#8a8a8a,#ff00af,#00afff'  # yellow, pink, white blue
-tmux_conf_theme_status_left=' 💩 #S '
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} %R , %d %b , #(/bin/bash $HOME/.tmux/kube-tmux/kube.tmux 250 red cyan) , #($HOME/.local/bin/gitmux "#{pane_current_path}")'
+tmux_conf_theme_status_left_bg='#f7eb02,#3a3a3a,#8a8a8a'
+tmux_conf_theme_status_left=' 💩 #S | #($HOME/.local/bin/gitmux "#{pane_current_path}")'
+tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} %R , %d %b , #(/bin/bash $HOME/.tmux/kube-tmux/kube.tmux 250 red cyan)'
 
 # set -g @plugin 'catppuccin/tmux'
 # set -g @catppuccin_window_left_separator ""

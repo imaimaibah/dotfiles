@@ -19,13 +19,12 @@ purple="#B388FF"
 blue="#06BCE4"
 cyan="#2CF9ED"
 
-export FZF_DEFAULT_OPTS="--layout=default --tmux center,80%,60% --color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
+export FZF_DEFEAULT_OPTS="--layout=reverse --tmux center,80%,60% --color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
 
 # -- Use fd instead of fzf --
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-#export FZF_CTRL_T_COMMAND="rg --color=always --line-number --no-heading --smart-case \"\${*:-}\""
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
@@ -100,6 +99,7 @@ sv(){
   esac
 }
 
+# ---- riggrep fzf view ----
 rfv(){
   rg --color=always --line-number --no-heading --smart-case "${*:-}" 2>/dev/null|
     fzf --ansi \
@@ -109,3 +109,7 @@ rfv(){
 }
 zle -N rfv
 bindkey '^F' rfv
+
+# ---- fzf-tab ----
+zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'bat -n --color=always --line-range :500 $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'

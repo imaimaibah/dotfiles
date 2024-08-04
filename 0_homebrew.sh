@@ -7,7 +7,7 @@
 # Not sure if fzf is needed. I might remove fzf from neovim, too.
 # Remove diff-so-fancy
 brew instal kubectl tmux git-flow-avh bat eza git-delta go nodejs glow lazygit fzf fd ripgrep jq yq neovim \
-  colima helm helmfile terraform chezmoi fx go-task
+  colima helm helmfile terraform chezmoi fx go-task lf
 
 # install stuff via cask
 brew install --cask iterm2 slack wezterm
