@@ -26,19 +26,10 @@ curl -Lsqf $URL | tar zx -C $LOCALBIN/ && chmod +x $LOCALBIN/gitmux || echo "Dow
 # git clone https://github.com/imaimaibah/kube-tmux.git ~/.tmux/kube-tmux
 
 ### BAT ###
-(
-  mkdir -p "$(bat --config-dir)/themes"
-  cd "$(bat --config-dir)/themes"
-  # Replace _night in the lines below with _day, _moon, or _storm if needed.
-  curl -O https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/tokyonight_day.tmTheme
-  curl -O https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/tokyonight_night.tmTheme
-  curl -O https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/tokyonight_moon.tmTheme
-  curl -O https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/tokyonight_storm.tmTheme
-  bat cache --build
-  if ! grep -- "--theme=";then
-    echo '--theme="tokyonight_night"' >> "$(bat --config-dir)/config"
-  fi
-)
+ln -sf ${BASEPATH}/bat ~/.config/bat
+
+### LF ###
+ln -fs ${BASEPATH}/lf ~/.config/lf
 
 ### HELM PLUGINS ###
 helm plugin install https://github.com/databus23/helm-diff
