@@ -111,5 +111,8 @@ zle -N rfv
 bindkey '^F' rfv
 
 # ---- fzf-tab ----
-zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'bat -n --color=always --line-range :500 $realpath'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+fzf_tab_preview="if [ -d \$realpath ]; then eza -L1 --tree --color=always \$realpath | head -200; else bat -n --color=always --line-range :500 \$realpath; fi"
+zstyle ':fzf-tab:complete:nvim:*' fzf-preview $fzf_tab_preview
+# zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'bat -n --color=always --line-range :500 $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -L1 --tree --color=always $realpath'
+# zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
