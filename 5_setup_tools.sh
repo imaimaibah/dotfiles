@@ -26,10 +26,10 @@ curl -Lsqf $URL | tar zx -C $LOCALBIN/ && chmod +x $LOCALBIN/gitmux || echo "Dow
 # git clone https://github.com/imaimaibah/kube-tmux.git ~/.tmux/kube-tmux
 
 ### BAT ###
-ln -sf ${BASEPATH}/bat ~/.config/bat
+ln -sf $(pwd)/bat ~/.config/bat
 
 ### LF ###
-ln -fs ${BASEPATH}/lf ~/.config/lf
+ln -fs $(pwd)/lf ~/.config/lf
 
 ### HELM PLUGINS ###
 helm plugin install https://github.com/databus23/helm-diff
