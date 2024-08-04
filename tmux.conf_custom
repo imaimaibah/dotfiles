@@ -6,6 +6,7 @@
 #               |___/
 set -g status-position top
 set -g detach-on-destroy off
+set-option -g default-shell /bin/zsh
 tmux_conf_theme_window_bg='colour240'
 tmux_conf_theme_highlight_focused_pane=true
 tmux_conf_theme_focused_pane_fg='default'
