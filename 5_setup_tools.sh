@@ -56,7 +56,6 @@ done
 
 if ! grep -E "source-file.*\.tmux\.conf_custom" ~/.tmux.conf.local &>/dev/null; then
   echo "source-file ~/.tmux.conf_custom" >>~/.tmux.conf.local
-  tmux
 fi
 
 if ! grep -E "source.*\.zshrc_custom" ~/.zshrc; then
