@@ -9,6 +9,5 @@ git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/p
 if [[ $(uname) == "Darwin" ]];then
   sed_option='""'
 fi
-echo $sed_option
 sed -i $sed_option 's#^ZSH_THEME=.*#ZSH_THEME="powerlevel10k/powerlevel10k"#' ~/.zshrc
 sed -i $sed_option 's#^plugins=(\(.*\))#plugins=(\1 zsh-autosuggestions tmux kubectl vi-mode web-search fzf-tab)\nZSH_TMUX_AUTOSTART=false#' ~/.zshrc
