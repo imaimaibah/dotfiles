@@ -99,6 +99,11 @@ sv(){
   esac
 }
 
+# ---- fzf-git ----
+if [ -f ~/.local/bin/fzf-git.sh ];then
+  source ~/.local/bin/fzf-git.sh
+fi
+
 # ---- riggrep fzf view ----
 rfv(){
   rg --color=always --line-number --no-heading --smart-case "${*:-}" 2>/dev/null|

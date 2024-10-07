@@ -4,7 +4,6 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Install tools via brew
-# Not sure if fzf is needed. I might remove fzf from neovim, too.
 # Remove diff-so-fancy
 brew instal kubectl tmux git-flow-avh bat eza git-delta go nodejs glow lazygit fzf fd ripgrep jq yq neovim \
   colima helm helmfile terraform chezmoi fx go-task lf
@@ -22,7 +21,7 @@ brew install --cask font-fira-code-nerd-font
 
 # File Encryption tool https://github.com/FiloSottile/age/
 # Secret operations. https://github.com/getsops/sops
-# brew install age
+# brew install age sops
 
 # vals is a tool to get values from remote storage/secret services. https://github.com/helmfile/vals
 

@@ -31,6 +31,9 @@ ln -sf $(pwd)/bat ~/.config/bat
 ### LF ###
 ln -fs $(pwd)/lf ~/.config/lf
 
+### fzf-git ###
+curl -sSL -q https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh -o ~/.local/bin/fzf-git.sh
+
 ### HELM PLUGINS ###
 helm plugin install https://github.com/databus23/helm-diff
 helm plugin install https://github.com/jkroepke/helm-secrets

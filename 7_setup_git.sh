@@ -25,7 +25,8 @@ git config --global alias.lol "log --graph --decorate --pretty=oneline --abbrev-
 git config --global alias.lola "log --graph --decorate --pretty=oneline --abbrev-commit --all"
 git config --global alias.ls "log --decorate --name-status"
 git config --global alias.lsl "log --decorate --patch --stat"
-git config --global alias.dig "! git log --full-history --patch --stat -G\"\$1\" \"\${@:1:}\" #"
+git config --global alias.search "! cd -- \"\${GIT_PREFIX:-.}\"; git log --full-history --patch -S\"\$1\" --pickaxe-regex \"\${@:2}\" #"
+git config --global alias.dig "! cd -- \"\${GIT_PREFIX:-.}\"; git log --full-history --patch -G\"\$1\" \"\${@:2}\" #"
 ### Others
 git config --global alias.base "merge-base HEAD origin/main"
 git config --global alias.track "for-each-ref --format='%(refname:short) <- %(upstream:short)' refs/heads"
