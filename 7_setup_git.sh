@@ -36,3 +36,4 @@ git config --global alias.cat "show --pretty=format:'%Cred%h%Creset %C(bold blue
 git config --global alias.tsort '! git tag | sort -V'
 git config --global alias.root '!pwd'
 git config --global alias.conflicts "diff --name-only --diff-filter=U --relative"
+git config --global alias.delta "! cd -- \"\${GIT_PREFIX:-.}\"; git diff \"\${@}\" | delta #"
