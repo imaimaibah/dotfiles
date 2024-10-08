@@ -113,7 +113,8 @@ rfv(){
     --bind 'enter:become(nvim {1} +{2})'
 }
 zle -N rfv
-bindkey '^F' rfv
+bindkey -M vicmd '^F' rfv
+bindkey -M viins '^F' rfv
 
 # ---- fzf-tab ----
 fzf_tab_preview="if [ -d \$realpath ]; then eza -L1 --tree --color=always \$realpath | head -200; else bat -n --color=always --line-range :500 \$realpath; fi"
