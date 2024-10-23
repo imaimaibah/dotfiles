@@ -10,4 +10,6 @@ if [[ $(uname) == "Darwin" ]];then
   sed_option='""'
 fi
 sed -i $sed_option 's#^ZSH_THEME=.*#ZSH_THEME="powerlevel10k/powerlevel10k"#' ~/.zshrc
-sed -i $sed_option 's#^plugins=(\(.*\))#plugins=(\1 zsh-autosuggestions tmux kubectl vi-mode web-search fzf-tab)\nZSH_TMUX_AUTOSTART=false#' ~/.zshrc
+if grep ZSH_TMUX_AUTOSTART ~/.zshrc &>/dev/null;then
+  sed -i $sed_option 's#^plugins=(\(.*\))#plugins=(\1 zsh-autosuggestions tmux kubectl vi-mode web-search git-auto-fetch fzf-tab)\nZSH_TMUX_AUTOSTART=false#' ~/.zshrc
+fi

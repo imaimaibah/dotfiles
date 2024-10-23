@@ -78,7 +78,7 @@ sv(){
     lazy*)
       echo "Switch to lazyvim"
       mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim} ~/.cache/nvim.{astronvim,lazyvim}
-      rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
+      rm -f ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
       ln -sf ~/.config/dotfiles/nvim.lazyvim ~/.config/nvim
       ln -sf ~/.local/share/nvim.lazyvim ~/.local/share/nvim
       ln -sf ~/.local/state/nvim.lazyvim ~/.local/state/nvim
@@ -87,11 +87,20 @@ sv(){
     astro*)
       echo "Switch to AstroNvim"
       mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim} ~/.cache/nvim.{astronvim,lazyvim}
-      rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
+      rm -f ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
       ln -sf ~/.config/dotfiles/nvim.astronvim ~/.config/nvim
       ln -sf ~/.local/share/nvim.astronvim ~/.local/share/nvim
       ln -sf ~/.local/state/nvim.astronvim ~/.local/state/nvim
       ln -sf ~/.cache/nvim.astronvim ~/.cache/nvim
+      ;;
+    nvchad)
+      echo "Switch to NvChad"
+      mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim,nvchad} ~/.cache/nvim.{astronvim,lazyvim,nvchad}
+      rm -f ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
+      ln -sf ~/.config/dotfiles/nvim.nvchad ~/.config/nvim
+      ln -sf ~/.local/share/nvim.nvchad ~/.local/share/nvim
+      ln -sf ~/.local/state/nvim.nvchad ~/.local/state/nvim
+      ln -sf ~/.cache/nvim.nvchad ~/.cache/nvim
       ;;
     *) 
       echo "Current nvim: $(ls -ld ~/.config/nvim|awk -F. '{print $NF}')"

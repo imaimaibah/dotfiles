@@ -24,6 +24,7 @@ unbind C-b
 unbind C-c
 set -g prefix C-t
 bind C-t send-prefix
+set-window-option -g mode-keys vi
 
 # Window Switch
 bind-key -n F1 select-window -t :1
@@ -42,6 +43,14 @@ tmux_conf_theme_status_left_bg='#ffa2ab,#3a3a3a,#8a8a8a'
 tmux_conf_theme_status_left=' 💩 #S | #($HOME/.local/bin/gitmux "#{pane_current_path}")'
 tmux_conf_theme_status_right_bg='#f7eb02,#8a8a8a,#3a3a3a'
 tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} %R , %d %b | #(/bin/bash $HOME/.tmux/kube-tmux/kube.tmux 250 red cyan) | #($HOME/.local/bin/gitmux "#{pane_current_path}")'
+
+### Auto fetch ###
+### URL: https://github.com/thepante/tmux-git-autofetch
+# set -g @plugin 'thepante/tmux-git-autofetch'
+# set -g @git-autofetch-skip-paths ".*"
+# set -g @git-autofetch-scan-paths "~/workspace/.*"
+# set -g @git-autofetch-frequency "3"
+# set -g @git-autofetch-logging "false"
 
 # set -g @plugin 'catppuccin/tmux'
 # set -g @catppuccin_window_left_separator ""
