@@ -27,7 +27,7 @@ git config --global alias.ls "log --decorate --name-status"
 git config --global alias.lsl "log --decorate --patch --stat"
 git config --global alias.search "! cd -- \"\${GIT_PREFIX:-.}\"; git log --full-history --patch -S\"\$1\" --pickaxe-regex \"\${@:2}\" #"
 git config --global alias.dig "! cd -- \"\${GIT_PREFIX:-.}\"; git log --full-history --patch -G\"\$1\" \"\${@:2}\" #"
-### Others
+### Others ###
 git config --global alias.base "merge-base HEAD origin/main"
 git config --global alias.track "for-each-ref --format='%(refname:short) <- %(upstream:short)' refs/heads"
 git config --global alias.gone "! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '\$2 == \"[gone]\" {print \$1}' | xargs -r git branch -D"
