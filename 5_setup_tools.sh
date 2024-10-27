@@ -31,6 +31,9 @@ ln -sf $(pwd)/bat ~/.config/bat
 ### LF ###
 ln -fs $(pwd)/lf ~/.config/lf
 
+### Lazygit ###
+ln -fs $(pwd)/lazygit ~/.config/lazygit
+
 ### fzf-git ###
 curl -sSL -q https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh -o ~/.local/bin/fzf-git.sh
 
