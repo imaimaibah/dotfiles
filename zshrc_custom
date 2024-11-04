@@ -123,8 +123,19 @@ rfv(){
     --bind 'enter:become(nvim {1} +{2})'
 }
 zle -N rfv
-bindkey -M vicmd '^F' rfv
-bindkey -M viins '^F' rfv
+bindkey -M vicmd '^F^G' rfv
+bindkey -M viins '^F^G' rfv
+
+# ---- fd fzf view ----
+ffv(){
+  fd --hidden --strip-cwd-prefix --exclude .git --base-directory $(git root) 2>/dev/null|
+    fzf --ansi \
+    --preview "$show_file_or_dir_preview" \
+    --bind 'enter:become(nvim {-1})'
+}
+zle -N ffv
+bindkey -M vicmd '^F^F' ffv
+bindkey -M viins '^F^F' ffv
 
 # ---- fzf-tab ----
 fzf_tab_preview="if [ -d \$realpath ]; then eza -L1 --tree --color=always \$realpath | head -200; else bat -n --color=always --line-range :500 \$realpath; fi"
