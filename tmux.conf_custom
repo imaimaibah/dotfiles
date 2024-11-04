@@ -47,8 +47,8 @@ tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} %R , %d %b | #(
 ### Auto fetch ###
 ### URL: https://github.com/thepante/tmux-git-autofetch
 # set -g @plugin 'thepante/tmux-git-autofetch'
-# set -g @git-autofetch-skip-paths ".*"
-# set -g @git-autofetch-scan-paths "~/workspace/.*"
+# set -gu @git-autofetch-skip-paths ".*"
+# set -gu @git-autofetch-scan-paths "~/workspace/.*"
 # set -g @git-autofetch-frequency "3"
 # set -g @git-autofetch-logging "false"
 
