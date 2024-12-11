@@ -2,6 +2,7 @@ alias vi=nvim
 alias lg=lazygit
 alias gf="git flow"
 alias cat="bat"
+alias tcap='tmux capture-pane -p -S - -E -'
 bindkey "^R" history-incremental-search-backward
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$HOME/.local/bin:$PATH"
 export EDITOR=nvim
