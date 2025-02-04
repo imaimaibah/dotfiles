@@ -37,6 +37,9 @@ ln -fs $(pwd)/lazygit ~/.config/lazygit
 ### fzf-git ###
 curl -sSL -q https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh -o ~/.local/bin/fzf-git.sh
 
+### fzf-tab ###
+curl -sSL -q https://raw.githubusercontent.com/lincheney/fzf-tab-completion/master/zsh/fzf-zsh-completion.sh -o ~/.local/bin/fzf-zsh-completion.sh
+
 ### HELM PLUGINS ###
 helm plugin install https://github.com/databus23/helm-diff
 helm plugin install https://github.com/jkroepke/helm-secrets

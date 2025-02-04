@@ -120,6 +120,11 @@ if [ -f ~/.local/bin/fzf-git.sh ];then
   source ~/.local/bin/fzf-git.sh
 fi
 
+# ---- fzf-tab ----
+if [ -f ~/.local/bin/fzf-zsh-completion.sh ];then
+  source ~/.local/bin/fzf-zsh-completion.sh
+fi
+
 # ---- ripgrep fzf view ----
 rfv(){
   rg --color=always --line-number --no-heading --smart-case "${*:-}" 2>/dev/null|
@@ -143,9 +148,11 @@ zle -N ffv
 bindkey -M vicmd '^F^F' ffv
 bindkey -M viins '^F^F' ffv
 
-# ---- fzf-tab ----
-fzf_tab_preview="if [ -d \$realpath ]; then eza -L1 --tree --color=always \$realpath | head -200; else bat -n --color=always --line-range :500 \$realpath; fi"
-zstyle ':fzf-tab:complete:nvim:*' fzf-preview $fzf_tab_preview
-# zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'bat -n --color=always --line-range :500 $realpath'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -L1 --tree --color=always $realpath'
-# zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':completion:*' fzf-search-display true
+zstyle ':completion:*' fzf-completion-secondary-color red
+zstyle ':completion::*:(cd|eza)::*' fzf-completion-opts --preview='eval eza -l -L1 --git --tree --color=always {1}|head -200'
+zstyle ':completion::*:*::*' fzf-completion-opts --preview='
+  eval set -- {+1}
+  if [ -d "$@" ]; then eza -L1 --tree -l --git --color=always "$@"| head -200; else bat -n --color=always --line-range :500 "$@"; fi
+'
+
