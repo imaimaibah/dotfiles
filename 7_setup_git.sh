@@ -4,6 +4,7 @@ git config --global user.name "Shin Imai"
 git config --global user.email "binaryninja0101@yahoo.com"
 git config --global difftool.prompt false
 git config --global pull.rebase true
+git config --global --add --bool push.autoSetupRemote true
 git config --global core.editor nvim
 git config --global core.pager bat
 git config --global fetch.prune true
