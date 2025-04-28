@@ -6,7 +6,10 @@
 # Install tools via brew
 # Remove diff-so-fancy
 brew instal kubectl tmux git-flow-avh bat eza git-delta go nodejs glow lazygit fzf fd ripgrep jq yq neovim \
-  colima helm helmfile terraform chezmoi fx go-task lf
+  colima helm helmfile terraform chezmoi fx go-task lf helm-docs pass
+
+# OTP tools for pass
+brew install pass-otp oath-toolkit zbar qrencode
 
 # install stuff via cask
 brew install --cask iterm2 slack wezterm

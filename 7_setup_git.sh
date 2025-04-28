@@ -38,3 +38,4 @@ git config --global alias.tsort '! git tag | sort -V'
 git config --global alias.root '!pwd'
 git config --global alias.conflicts "diff --name-only --diff-filter=U --relative"
 git config --global alias.delta "! cd -- \"\${GIT_PREFIX:-.}\"; git diff \"\${@}\" | delta #"
+git config --global alias.ls-branch "for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)' --sort=-committerdate"
