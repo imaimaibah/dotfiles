@@ -9,3 +9,6 @@ gui:
     - underline
     selectedRangeBgColor:
     - underline
+  branchColorPatterns:
+    '^upgrade': '#11aaff'
+
