@@ -82,38 +82,27 @@ export EZA_ICONS_AUTO=always
 # ---- vim switch ----
 sv(){
   vim=$1
-  case $vim in
-    lazy*)
-      echo "Switch to LazyVim"
-      mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim} ~/.cache/nvim.{astronvim,lazyvim}
-      rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
-      ln -sf ~/.config/dotfiles/nvim.lazyvim ~/.config/nvim
-      ln -sf ~/.local/share/nvim.lazyvim ~/.local/share/nvim
-      ln -sf ~/.local/state/nvim.lazyvim ~/.local/state/nvim
-      ln -sf ~/.cache/nvim.lazyvim ~/.cache/nvim
-      ;;
-    astro*)
-      echo "Switch to AstroNvim"
-      mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim} ~/.cache/nvim.{astronvim,lazyvim}
-      rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
-      ln -sf ~/.config/dotfiles/nvim.astronvim ~/.config/nvim
-      ln -sf ~/.local/share/nvim.astronvim ~/.local/share/nvim
-      ln -sf ~/.local/state/nvim.astronvim ~/.local/state/nvim
-      ln -sf ~/.cache/nvim.astronvim ~/.cache/nvim
-      ;;
-    nvchad)
-      echo "Switch to NvChad"
-      mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim,nvchad} ~/.cache/nvim.{astronvim,lazyvim,nvchad}
-      rm -f ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
-      ln -sf ~/.config/dotfiles/nvim.nvchad ~/.config/nvim
-      ln -sf ~/.local/share/nvim.nvchad ~/.local/share/nvim
-      ln -sf ~/.local/state/nvim.nvchad ~/.local/state/nvim
-      ln -sf ~/.cache/nvim.nvchad ~/.cache/nvim
-      ;;
-    *) 
-      echo "Current nvim: $(ls -ld ~/.config/nvim|awk -F. '{print $NF}')"
-      ;;
-  esac
+  if [ -z "$vim" ];then
+    echo "VIM name required"
+    return 1
+  fi
+
+  if [ ! -d ~/.config/nvim."${vim}" ];then
+    echo "${vim} is not configured!"
+    return 1
+  fi
+
+  mkdir -p ~/.local/{share,state}/nvim.${vim} ~/.cache/nvim.${vim}
+  rm -f ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
+  ln -sf ~/.config/nvim.${vim} ~/.config/nvim
+  ln -sf ~/.local/share/nvim.${vim} ~/.local/share/nvim
+  ln -sf ~/.local/state/nvim.${vim} ~/.local/state/nvim
+  ln -sf ~/.cache/nvim.${vim} ~/.cache/nvim
+}
+
+sv_clean(){
+  vim=$1
+  rm -f ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
 }
 
 # ---- fzf-git ----
