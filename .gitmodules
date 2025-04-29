@@ -1,9 +1,0 @@
-[submodule "nvim.lazyvim"]
-	path = nvim.lazyvim
-	url = git@github.com:imaimaibah/lazyvim-starter.git
-[submodule "nvim.astronvim"]
-	path = nvim.astronvim
-	url = git@github.com:imaimaibah/astronvim-template.git
-[submodule "nvim.nvchad"]
-	path = nvim.nvchad
-	url = git@github.com:imaimaibah/nvchad-starter.git

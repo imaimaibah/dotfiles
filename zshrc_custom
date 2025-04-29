@@ -22,7 +22,7 @@ purple="#B388FF"
 blue="#06BCE4"
 cyan="#2CF9ED"
 
-export FZF_DEFAULT_OPTS="--layout=reverse --tmux center,80%,60% --color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
+export FZF_DEFAULT_OPTS="--prompt '🔍 ' --layout=reverse --tmux center,80%,60% --color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
 
 # -- Use fd instead of fzf --
 
@@ -86,7 +86,7 @@ sv(){
     lazy*)
       echo "Switch to LazyVim"
       mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim} ~/.cache/nvim.{astronvim,lazyvim}
-      rm -f ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
+      rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
       ln -sf ~/.config/dotfiles/nvim.lazyvim ~/.config/nvim
       ln -sf ~/.local/share/nvim.lazyvim ~/.local/share/nvim
       ln -sf ~/.local/state/nvim.lazyvim ~/.local/state/nvim
@@ -95,7 +95,7 @@ sv(){
     astro*)
       echo "Switch to AstroNvim"
       mkdir -p ~/.local/{share,state}/nvim.{astronvim,lazyvim} ~/.cache/nvim.{astronvim,lazyvim}
-      rm -f ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
+      rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
       ln -sf ~/.config/dotfiles/nvim.astronvim ~/.config/nvim
       ln -sf ~/.local/share/nvim.astronvim ~/.local/share/nvim
       ln -sf ~/.local/state/nvim.astronvim ~/.local/state/nvim
@@ -156,4 +156,3 @@ zstyle ':completion::*:*::*' fzf-completion-opts --preview='
   eval set -- {+1}
   if [ -d "$1" ]; then eza -L1 --tree -l --git --color=always $@| head -200; else bash -c "bat -n --color=always --line-range :500 $@"; fi
 '
-

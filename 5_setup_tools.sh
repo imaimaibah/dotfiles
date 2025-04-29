@@ -11,8 +11,8 @@ fi
 (
   cd ~
   git clone https://github.com/gpakosz/.tmux.git
-  ln -s -f .tmux/.tmux.conf .tmux.conf
-  cp .tmux/.tmux.conf.local .
+  ln -fs .tmux/.tmux.conf .tmux.conf
+  cat .tmux/.tmux.conf.local > ./.tmux.conf.local
 )
 
 ## Gitmux
@@ -26,19 +26,30 @@ curl -Lsqf $URL | tar zx -C $LOCALBIN/ && chmod +x $LOCALBIN/gitmux || echo "Dow
 # git clone https://github.com/imaimaibah/kube-tmux.git ~/.tmux/kube-tmux
 
 ### BAT ###
-ln -sf $(pwd)/bat ~/.config/bat
+if [ ! -e ~/.config/bat ];then
+  ln -sf $(pwd)/bat ~/.config/bat
+fi
+bat cache --build
 
 ### LF ###
-ln -fs $(pwd)/lf ~/.config/lf
+if [ ! -e ~/.config/lf ];then
+  ln -fs $(pwd)/lf ~/.config/lf
+fi
 
 ### Lazygit ###
-ln -fs $(pwd)/lazygit ~/.config/lazygit
+if [ ! -e ~/.config/lazygit ];then
+  ln -fs $(pwd)/lazygit ~/.config/lazygit
+fi
 
 ### fzf-git ###
-curl -sSL -q https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh -o ~/.local/bin/fzf-git.sh
+if [ ! -e ~/.local/bin/fzf-git.sh ];then
+  curl -sSL -q https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh -o ~/.local/bin/fzf-git.sh
+fi
 
 ### fzf-tab ###
-curl -sSL -q https://raw.githubusercontent.com/lincheney/fzf-tab-completion/master/zsh/fzf-zsh-completion.sh -o ~/.local/bin/fzf-zsh-completion.sh
+if [ ! -e ~/.local/bin/fzf-zsh-completion.sh ];then
+  curl -sSL -q https://raw.githubusercontent.com/lincheney/fzf-tab-completion/master/zsh/fzf-zsh-completion.sh -o ~/.local/bin/fzf-zsh-completion.sh
+fi
 
 ### HELM PLUGINS ###
 helm plugin install https://github.com/databus23/helm-diff
@@ -46,8 +57,8 @@ helm plugin install https://github.com/jkroepke/helm-secrets
 helm plugin install https://github.com/aslafy-z/helm-git --version 1.3.0
 
 # Install Krew and plugins
+if [ ! -e ~/.krew ];then
 (
-  set -x
   cd "$(mktemp -d)" &&
     OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
     ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
@@ -57,6 +68,7 @@ helm plugin install https://github.com/aslafy-z/helm-git --version 1.3.0
     ./"${KREW}" install krew
   ~/.krew/bin/kubectl-krew install ctx ns stern
 )
+fi
 
 ### Create symlinks for dotfiles
 for file in $(ls ${BASEPATH}*_custom); do
@@ -68,7 +80,7 @@ if ! grep -E "source-file.*\.tmux\.conf_custom" ~/.tmux.conf.local &>/dev/null; 
   echo "source-file ~/.tmux.conf_custom" >>~/.tmux.conf.local
 fi
 
-if ! grep -E "source.*\.zshrc_custom" ~/.zshrc; then
+if ! grep -E "source.*\.zshrc_custom" ~/.zshrc &>/dev/null; then
   echo "source ~/.zshrc_custom" >>~/.zshrc
   . ~/.zshrc
 fi

@@ -1,23 +1,40 @@
 #!/bin/zsh
 
+# Install tools to install brew for Linux
+if [[ $(uname) == "Linux" ]];then
+  sudo apt-get install build-essential procps curl zsh git file
+  sudo chsh -s $(which zsh)
+fi
+
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Install tools via brew
-# Remove diff-so-fancy
+# Brew path isn't configure on Linux. Need to manually configure it.
+if [[ $(uname) == "Linux" ]];then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+# Install tools via brew,
+# Remove diff-so-fancy, lf
 brew instal kubectl tmux git-flow-avh bat eza git-delta go nodejs glow lazygit fzf fd ripgrep jq yq neovim \
-  colima helm helmfile terraform chezmoi fx go-task lf helm-docs pass
+  colima helm helmfile terraform fx go-task helm-docs gopass
+
+# brew instal chezmoi
 
 # OTP tools for pass
-brew install pass-otp oath-toolkit zbar qrencode
+# brew install pass-otp oath-toolkit zbar qrencode
 
 # install stuff via cask
-brew install --cask iterm2 slack wezterm
+if [[ $(uname) == "Darwin" ]];then
+  brew install --cask iterm2 slack wezterm
+fi
 
 # install nerd fonts
-brew tap homebrew/cask-fonts
-brew install --cask font-hack-nerd-font
-brew install --cask font-fira-code-nerd-font
+if [[ $(uname) == "Darwin" ]];then
+  brew tap homebrew/cask-fonts
+  brew install --cask font-hack-nerd-font
+  brew install --cask font-fira-code-nerd-font
+fi
 
 # This is usuful tool to obtain values from tfstate. https://github.com/fujiwara/tfstate-lookup
 # brew install fujiwara/tap/tfstate-lookup
