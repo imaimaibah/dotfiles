@@ -31,6 +31,11 @@ if [ ! -e ~/.config/bat ];then
 fi
 bat cache --build
 
+### GLOW ###
+if [ ! -e ~/.config/glow ];then
+  ln -sf $(pwd)/glow ~/.config/glow
+fi
+
 ### LF ###
 if [ ! -e ~/.config/lf ];then
   ln -fs $(pwd)/lf ~/.config/lf
