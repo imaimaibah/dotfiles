@@ -14,11 +14,11 @@ if ! grep ZSH_TMUX_AUTOSTART ~/.zshrc &>/dev/null;then
 fi
 
 if [[ $(uname) == "Linux" ]];then
-zshrc_file=~/.zshrc
-exec 3<$zshrc_file
-rm -f $zshrc_file
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' > $zshrc_file &&
-  cat <&3 >>$zshrc_file ||
-  cat <&3 >$zshrc_file
-exec 3>&-
+  zshrc_file=~/.zshrc
+  exec 3<$zshrc_file
+  rm -f $zshrc_file
+  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' > $zshrc_file &&
+    cat <&3 >>$zshrc_file ||
+    cat <&3 >$zshrc_file
+  exec 3>&-
 fi
