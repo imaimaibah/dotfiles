@@ -83,7 +83,8 @@ export EZA_ICONS_AUTO=always
 sv(){
   vim=$1
   if [ -z "$vim" ];then
-    echo "VIM name required"
+    vim=$(readlink -f ~/.config/nvim)
+    printf "Current vim is %s.\n" ${vim##*.}
     return 1
   fi
 
