@@ -102,7 +102,7 @@ sv(){
 
 sv_clean(){
   vim=$1
-  rm -f ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim
+  rm -f ~/.config/nvim.${vim} ~/.local/state/nvim.${vim} ~/.local/share/nvim.${vim} ~/.cache/nvim.${vim}
 }
 
 # ---- fzf-git ----
