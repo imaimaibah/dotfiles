@@ -15,11 +15,9 @@ if [[ $(uname) == "Linux" ]];then
 fi
 
 # Install tools via brew,
-# Remove diff-so-fancy, lf
+# Remove diff-so-fancy, lf, chezmoi, terraform
 brew instal kubectl tmux git-flow-avh bat eza git-delta go nodejs glow lazygit fzf fd ripgrep jq yq neovim \
-  colima helm helmfile terraform fx go-task helm-docs gopass
-
-# brew instal chezmoi
+  colima helm helmfile fx go-task helm-docs gopass
 
 # OTP tools for pass
 # brew install pass-otp oath-toolkit zbar qrencode

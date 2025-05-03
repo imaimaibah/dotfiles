@@ -85,6 +85,10 @@ sv(){
   if [ -z "$vim" ];then
     vim=$(readlink -f ~/.config/nvim)
     printf "Current vim is %s.\n" ${vim##*.}
+    echo "Available vim:"
+    ls -d ~/.config/nvim.* |awk '{print $NF}'| while read -r nvim;do
+      echo ${nvim##*nvim.}
+    done
     return 1
   fi
 
