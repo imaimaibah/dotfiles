@@ -23,7 +23,7 @@ fi
 brew instal kubectl tmux bat eza git git-delta go nodejs fd ripgrep jq neovim helm helmfile fx gopass
 
 OPTION=""
-if [[ "$OS" == "Linux") && "$ARCH" == "aarch64" ]];then
+if [[ "$OS" == "Linux" && "$ARCH" == "aarch64" ]];then
   OPTION="--build-from-source"
 fi
 brew install "$OPTION" fzf lazygit glow yq go-task helm-docs kind glow
