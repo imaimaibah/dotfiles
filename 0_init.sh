@@ -5,8 +5,9 @@ ARCH=$(uname -m)
 
 # Install tools to install brew for Linux
 if [[ "$OS" == "Linux" ]];then
+  sudo apt update
   sudo apt-get install build-essential procps curl zsh file docker.io
-  sudo chsh -s $(which zsh)
+  sudo chsh -s $(which zsh) "$USER"
   sudo usermod -aG docker $USER
 fi
 
@@ -62,3 +63,5 @@ fi
 
 # vals is a tool to get values from remote storage/secret services. https://github.com/helmfile/vals
 
+# Clean up
+brew cleanup
