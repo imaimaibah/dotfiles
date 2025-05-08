@@ -4,12 +4,12 @@ if [ -d "$HOME/.config/nvim" ]; then
   rm -rf ~/.config/nvim
 fi
 
-if [ -d "$HOME/.local/nvim/state" ]; then
-  rm -rf ~/.local/nvim/state
+if [ -d "$HOME/.local/state/nvim" ]; then
+  rm -rf ~/.local/state/nvim
 fi
 
-if [ -d "$HOME/.local/nvim/share" ]; then
-  rm -rf ~/.local/nvim/share
+if [ -d "$HOME/.local/share/nvim" ]; then
+  rm -rf ~/.local/share/nvim
 fi
 
 if [ -d "$HOME/.cache/nvim" ]; then
