@@ -27,7 +27,7 @@ OPTION=""
 if [[ "$OS" == "Linux" && "$ARCH" == "aarch64" ]];then
   OPTION="--build-from-source"
 fi
-brew install "$OPTION" fzf lazygit glow yq go-task helm-docs kind glow
+brew install "$OPTION" fzf lazygit glow yq go-task helm-docs kind
 
 # OTP tools for pass
 # brew install pass-otp oath-toolkit zbar qrencode
