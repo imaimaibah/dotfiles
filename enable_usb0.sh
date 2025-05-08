@@ -1,13 +1,11 @@
 #!/usr/bin/env zsh
 
-sudo -i
-
-if ! grep "dwc2,g_ether" /boot/firmware/cmdline.txt; then
-  sed -i 's/rootwait /&modules-load=dwc2,g_ether ' /boot/firmware/cmdline.txt
+if ! grep "dwc2,g_ether" /boot/firmware/cmdline.txt &>/dev/null; then
+  sed -i 's/rootwait /&modules-load=dwc2,g_ether /' /boot/firmware/cmdline.txt
 fi
 
-if ! grep "dtoverlay=dwc2" /boot/firmware/config.txt; then
-  sed -i 's/\[all\]/&\ndtoverlay=dwc2' /boot/firmware/config.txt
+if ! grep -E "dtoverlay=dwc2$" /boot/firmware/config.txt &>/dev/null; then
+  sed -i 's/\[all\]/&\ndtoverlay=dwc2/' /boot/firmware/config.txt
 fi
 
 if [ ! -e "/etc/NetworkManager/system-connections/ethernet-usb0.nmconnection" ]; then
@@ -37,6 +35,7 @@ ExecStart=/usr/local/sbin/usb-gadget.sh
 
 [Install]
 WantedBy=sysinit.target
+EOF
 
 systemctl enable usbgadget.service
 

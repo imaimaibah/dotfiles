@@ -8,43 +8,56 @@ fi
 ### TMUX ###
 ### Install tmux stuff ##
 ## tmux bar
-(
-  cd ~
-  git clone https://github.com/gpakosz/.tmux.git
-  ln -fs .tmux/.tmux.conf .tmux.conf
-  cat .tmux/.tmux.conf.local > ./.tmux.conf.local
-)
+if [ ! -d ~/.tmux ];then
+  (
+    cd ~
+    git clone https://github.com/gpakosz/.tmux.git
+    ln -fs .tmux/.tmux.conf .tmux.conf
+    cat .tmux/.tmux.conf.local > ./.tmux.conf.local
+  )
+fi
 
 ## Gitmux
+case $(uname) in
+  Linux)
+    OS=linux
+    ;;
+  Darwin)
+    OS=macOS
+    ;;
+esac
 LOCALBIN=~/.local/bin
 mkdir -p $LOCALBIN
 URL=$(curl -fLsq https://api.github.com/repos/arl/gitmux/releases/latest |
-  awk '$1~/download_url/ && $2~/macOS_arm64/ {print $2}' | tr -d '"')
+  awk '$1~/download_url/ && $2~/'"$OS"'_arm64/ {print $2}' | tr -d '"')
 curl -Lsqf $URL | tar zx -C $LOCALBIN/ && chmod +x $LOCALBIN/gitmux || echo "Downloadin gitmux failed"
 
 ## kube-tmux
 # git clone https://github.com/imaimaibah/kube-tmux.git ~/.tmux/kube-tmux
 
 ### BAT ###
-if [ ! -e ~/.config/bat ];then
-  ln -sf $(pwd)/bat ~/.config/bat
+if [ -d ~/.config/bat ];then
+  rm -rf ~/.config/bat
 fi
+ln -sf $(pwd)/bat ~/.config/bat
 bat cache --build
 
 ### GLOW ###
-if [ ! -e ~/.config/glow ];then
-  ln -sf $(pwd)/glow ~/.config/glow
+if [ -d ~/.config/glow ];then
+  rm -rf ~/.config/glow
 fi
+ln -sf $(pwd)/glow ~/.config/glow
 
 ### LF ###
-if [ ! -e ~/.config/lf ];then
-  ln -fs $(pwd)/lf ~/.config/lf
-fi
+# if [ ! -e ~/.config/lf ];then
+#   ln -fs $(pwd)/lf ~/.config/lf
+# fi
 
 ### Lazygit ###
-if [ ! -e ~/.config/lazygit ];then
-  ln -fs $(pwd)/lazygit ~/.config/lazygit
+if [ -d ~/.config/lazygit ];then
+  rm -rf ~/.config/lazygit
 fi
+ln -fs $(pwd)/lazygit ~/.config/lazygit
 
 ### fzf-git ###
 if [ ! -e ~/.local/bin/fzf-git.sh ];then

@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 OS=$(uname)
-ARCH=$(uname -m)
 
 # Install tools to install brew for Linux
 if [[ "$OS" == "Linux" ]];then
@@ -23,18 +22,13 @@ fi
 # Remove diff-so-fancy, lf, chezmoi, terraform, git-flow, rust
 brew instal kubectl tmux bat eza git git-delta go nodejs fd ripgrep jq neovim helm helmfile fx gopass
 
-OPTION=""
-if [[ "$OS" == "Linux" && "$ARCH" == "aarch64" ]];then
-  OPTION="--build-from-source"
-fi
-brew install "$OPTION" fzf lazygit glow yq go-task helm-docs kind
-
 # OTP tools for pass
 # brew install pass-otp oath-toolkit zbar qrencode
 
+# Only Mac
 if [[ "$OS" == "Darwin" ]];then
+  brew colima fzf lazygit glow yq go-task helm-docs kind
   # install stuff via cask
-  brew colima
   brew install --cask iterm2 slack wezterm
 
   # install nerd fonts
