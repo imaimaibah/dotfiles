@@ -186,7 +186,7 @@ cw() {
 zstyle ':completion:*' fzf-search-display true
 zstyle ':completion:*' fzf-completion-secondary-color red
 # zstyle ':completion:*:(cd|eza)::*' fzf-completion-opts --preview='eval eza -l -L1 --git --tree --color=always {1}|head -200'
-zstyle ':completion:*:*:cw::*' fzf-completion-opts --preview='git delta HEAD...$@'
+zstyle ':completion:*:*:cw::*' fzf-completion-opts --preview="eval git delta HEAD...{1}"
 zstyle ':completion:*:*:*::*' fzf-completion-opts --preview='
   eval set -- {+1}
   if [ -d "$1" ]; then eza -L1 --tree -l --git --color=always $@| head -200; else bash -c "bat -n --color=always --line-range :500 $@"; fi
@@ -194,7 +194,6 @@ zstyle ':completion:*:*:*::*' fzf-completion-opts --preview='
 
 _cw(){
   local -a lists
-  local paths
   lists=(${(f)"$(git worktree list |
     awk '{s=$3; gsub("[\\[\\]]","", s);print s}'
   )"})
