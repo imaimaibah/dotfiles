@@ -18,9 +18,12 @@ if [[ "$OS" == "Linux" ]];then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-# Common tools to install via brew,
-# Remove diff-so-fancy, lf, chezmoi, terraform, git-flow, rust
-brew instal kubectl tmux bat eza git git-delta go nodejs fd ripgrep jq neovim helm helmfile fx gopass
+# Install tools via brew,
+# Remove diff-so-fancy, lf
+brew instal kubectl tmux bat eza git-delta go nodejs glow lazygit fzf fd ripgrep jq yq neovim \
+  colima helm helmfile terraform fx go-task helm-docs gopass viddy pv pandoc httpie curlie lazydocker
+
+# brew instal chezmoi
 
 # OTP tools for pass
 # brew install pass-otp oath-toolkit zbar qrencode

@@ -6,6 +6,7 @@ alias tcap='tmux capture-pane -p -S - -E -'
 bindkey "^R" history-incremental-search-backward
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$HOME/.local/bin:$PATH"
 export EDITOR=nvim
+export NVIM_APPNAME=lazyvim
 export XDG_CONFIG_HOME="$HOME/.config"
 #export KIND_EXPERIMENTAL_PROVIDER=podman
 if [[ "$LC_TERMINAL" == "ShellFish" ]];then
@@ -146,10 +147,59 @@ zle -N ffv
 bindkey -M vicmd '^F^F' ffv
 bindkey -M viins '^F^F' ffv
 
+# ---- Go up directories ----
+
+up() {
+  local d=""
+  for ((i = 1; i <= $1; i++)); do
+    d+="../"
+  done
+  cd "$d"
+}
+
+# ---- Git worktree functions ----
+# add worktree
+aw() {
+  if [ $# -ne 1 ]; then
+    echo "Usage: aw <branch>" >&2
+    return 1
+  fi
+  git worktree add -b $1 ~/worktrees/$1
+}
+
+# change worktree
+cw() {
+  if [ $# -ne 1 ]; then
+    echo "Usage: cw <branch>" >&2
+    return 1
+  fi
+  local dir="$(git worktree list | grep -F "$1" | awk '{print $1}')"
+  if [ -n "$dir" ]; then
+    cd "$dir"
+  else
+    echo "Cannot find path for branch '$1'" >&2
+    return 1
+  fi
+}
+
+# ---- Completion settings ----
 zstyle ':completion:*' fzf-search-display true
 zstyle ':completion:*' fzf-completion-secondary-color red
-zstyle ':completion::*:(cd|eza)::*' fzf-completion-opts --preview='eval eza -l -L1 --git --tree --color=always {1}|head -200'
-zstyle ':completion::*:*::*' fzf-completion-opts --preview='
+# zstyle ':completion:*:(cd|eza)::*' fzf-completion-opts --preview='eval eza -l -L1 --git --tree --color=always {1}|head -200'
+zstyle ':completion:*:*:cw::*' fzf-completion-opts --preview='git delta HEAD...$@'
+zstyle ':completion:*:*:*::*' fzf-completion-opts --preview='
   eval set -- {+1}
   if [ -d "$1" ]; then eza -L1 --tree -l --git --color=always $@| head -200; else bash -c "bat -n --color=always --line-range :500 $@"; fi
 '
+
+_cw(){
+  local -a lists
+  local paths
+  lists=(${(f)"$(git worktree list |
+    awk '{s=$3; gsub("[\\[\\]]","", s);print s}'
+  )"})
+  compadd -- $lists
+}
+
+compdef _cw cw
+
