@@ -21,7 +21,7 @@ fi
 # Install tools via brew,
 # Remove diff-so-fancy, lf
 brew instal kubectl tmux bat eza git-delta go nodejs glow lazygit fzf fd ripgrep jq yq neovim \
-  colima helm helmfile terraform fx go-task helm-docs gopass viddy pv pandoc httpie curlie lazydocker
+  colima helm helmfile terraform fx go-task helm-docs gopass viddy pv pandoc httpie curlie lazydocker hunk herdr openspec opencode posting supferfile
 
 # brew instal chezmoi
 
