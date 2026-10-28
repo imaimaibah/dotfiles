@@ -34,8 +34,12 @@ git config --global alias.track "for-each-ref --format='%(refname:short) <- %(up
 git config --global alias.gone "! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '\$2 == \"[gone]\" {print \$1}' | xargs -r git branch -D"
 git config --global alias.tagrev "rev-list -n 1"
 git config --global alias.cat "show --pretty=format:'%Cred%h%Creset %C(bold blue)<%aN>%Creset %C(yellow)%d%Creset %Cgreen%ad (%cr)%Creset%n%C(yellow)%B%Creset' --abbrev-commit"
-git config --global alias.tsort '! git tag | sort -V'
-git config --global alias.root '!pwd'
+git config --global alias.tsort '! git tag | sort -V #'
+git config --global alias.root "!pwd"
 git config --global alias.conflicts "diff --name-only --diff-filter=U --relative"
 git config --global alias.delta "! cd -- \"\${GIT_PREFIX:-.}\"; git diff \"\${@}\" | delta #"
+git config --global alias.hunk "! cd -- \"\${GIT_PREFIX:-.}\"; git diff \"\${@}\" | hunk diff #"
 git config --global alias.ls-branch "for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)' --sort=-committerdate"
+git config --global alias.echo '! func () { echo ${@}; } #; func #'
+git config --global alias.get-url "remote get-url \"${1:-origin}\""
+git config --global alias.diff-last '! git diff $(git rev-list -1 HEAD -- "${GIT_PREFIX:-.}${1}")~...HEAD -- "${GIT_PREFIX}${1}" #'

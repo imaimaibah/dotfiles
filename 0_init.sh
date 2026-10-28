@@ -21,12 +21,16 @@ fi
 # Install tools via brew,
 # Remove diff-so-fancy, lf
 brew instal kubectl tmux bat eza git-delta go nodejs glow lazygit fzf fd ripgrep jq yq neovim \
-  colima helm helmfile terraform fx jnv go-task helm-docs gopass viddy pv pandoc httpie curlie lazydocker hunk herdr openspec opencode posting supferfile
+  colima helm helmfile terraform fx jnv jid go-task helm-docs gopass viddy pv pandoc httpie curlie lazydocker hunk herdr openspec opencode posting supferfile
 
 # brew instal chezmoi
 
 # OTP tools for pass
 # brew install pass-otp oath-toolkit zbar qrencode
+
+# Github stuff
+brew install gh
+gh extension instal dlvhdr/gh-dash
 
 # Only Mac
 if [[ "$OS" == "Darwin" ]];then

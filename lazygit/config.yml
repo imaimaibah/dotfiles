@@ -12,3 +12,5 @@ gui:
   branchColorPatterns:
     '^upgrade': '#11aaff'
 
+os:
+  edit: $EDITOR {{filename}}
